@@ -41,7 +41,9 @@ Origination cannot be detected by inspecting outputs. A fabricated figure and a 
 | **D6** | Conflicting input | Does it flag contradictions — or silently reconcile them? |
 | **D7** | **Computation invocation** | **Was deterministic computation actually invoked — and was invocation guaranteed or discretionary?** |
 
-D7 reframes an existing question. Tool-invocation has been studied as a capability — whether a model decides well about calling a tool (When2Call, WTU-Eval, ToolFailBench). AP-1 asks whether the decision is the model's to make at all. A high invocation rate is a tendency. A system in which invocation cannot be declined has a control.
+**D7 reframes an existing question.** Tool-invocation decisions have been studied as a *capability* question — whether a model correctly judges when a tool is required (see [When2Call](https://arxiv.org/abs/2504.18851), Ross, Mahabaleshwarkar & Suhara, NAACL 2025). AP-1 asks a different question: not *"does the model decide well?"* but *"is the decision the model's to make at all?"*
+
+A high invocation rate is a **tendency**. A system in which invocation cannot be declined has a **control**. The prior literature measures the former. AP-1 requires the latter.
 
 In a tool-augmented language model, the computation is deterministic — but *the decision to compute is not*. The model decides whether to invoke computation (probabilistic), writes the computation (probabilistic), the computation executes (deterministic), and the model transcribes the result (probabilistic). **Three of four links are probabilistic.**
 
