@@ -5,7 +5,7 @@
 Version 1.1 · July 2026 · Authored by ZORRZ Inc.
 Published under CC-BY 4.0 — free to use, cite, implement, and apply to any system, including the author's.
 
-**Standard (PDF):** [AP-1 v1.0](AP-1_Admissibility_Protocol_v1.1.pdf)
+**Standard (PDF):** [AP-1 v1.1](AP-1_Admissibility_Protocol_v1.1.pdf)
 **Citable record (DOI):** *to be added on publication*
 
 ---
