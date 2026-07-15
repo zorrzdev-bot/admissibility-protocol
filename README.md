@@ -2,11 +2,12 @@
 
 **An open standard for evaluating numerical admissibility in AI systems.**
 
-Version 1.1 · July 2026 · Authored by ZORRZ Inc.
+Version 1.2 · July 2026 · Authored by ZORRZ Inc.
 Published under CC-BY 4.0 — free to use, cite, implement, and apply to any system, including the author's.
 
-**Standard (PDF):** [AP-1 v1.1](AP-1_Admissibility_Protocol_v1.1.pdf)
-**Citable record (DOI):** *to be added on publication*
+- **Standard (PDF):** [AP-1 v1.2](AP-1_Admissibility_Protocol_v1_2.pdf)
+- **Citable record (DOI):** [10.5281/zenodo.21324954](https://doi.org/10.5281/zenodo.21324954) — concept DOI; always resolves to the latest version
+- **Reference implementation:** in this repository
 
 ---
 
@@ -21,58 +22,122 @@ A figure is **admissible** if, and only if, it is:
 - **Reproducible** — identical on repeat execution given identical inputs
 - **Refusable** — withheld when the data required to compute it is absent or contradictory
 
-A figure failing any of these conditions is **inadmissible**, irrespective of whether it happens to be correct.
+A figure failing any of these conditions is **inadmissible**, irrespective of whether it happens to be correct. Admissibility is a property of the **system that produced the figure**, not of the figure itself — it cannot be established by inspecting outputs.
 
 ## The failure it tests for
 
 **Origination** — a generative model producing a quantitative value that was not computed from source data.
 
-Origination cannot be detected by inspecting outputs. A fabricated figure and a computed figure are textually indistinguishable. **It can only be excluded by architecture.**
+Origination cannot be detected by inspecting outputs: a fabricated figure and a computed figure are textually indistinguishable. **Whether origination can be excluded at all — and by what means — is the empirical question this protocol measures** (see *A falsifiable claim* below, and D7). AP-1 does not assume the answer; it measures it.
+
+## Architecture neutrality
+
+AP-1 prescribes no implementation. It defines the *properties* an admissible system must exhibit — computation, traceability, reproducibility, refusal, and guaranteed invocation — and is silent on how any system achieves them. Any system meeting the bar conforms, whatever its internal design. **AP-1 favours no vendor, no architecture, and no model.** It is a measuring instrument, not a design. Where this repository observes that a given class of system does or does not pass, that observation is an **empirical finding to be reproduced or refuted**, never a definition of admissibility.
+
+## A falsifiable claim
+
+AP-1 rests on a claim that can be proven false. It is stated as a hypothesis, with its defeat condition, so that any party may attempt to refute it:
+
+> A system that relies on probabilistic generation to decide **whether** to compute, or to decide **which values** enter the computation, or to **transcribe** the result, cannot guarantee admissibility. Guaranteed invocation, exact reproducibility, and zero origination under pressure are properties of systems in which the generative model is removed from the computation path.
+
+This is a hypothesis, not a definition. It is **falsified by a single counterexample**: any system that admits a generative model into the decision-to-compute and nonetheless achieves, on a held-out set it has not seen —
+
+- **100%** deterministic-computation invocation on computable questions (including with any facilitating instruction removed),
+- **exact** reproducibility across repeated execution, and
+- **zero** origination across refusal-pressure and adversarial conditions —
+
+has refuted the claim, and AP-1 records that refutation unaltered. **The author invites any party — expressly including the builders of frontier generative models — to submit such a system.** A standard that cannot be falsified is not a standard; this one names its own defeat condition.
 
 ## The seven dimensions
 
+A system is evaluated across all seven. A system may not claim AP-1 compliance having omitted any dimension.
+
 | | Dimension | Tests |
 |---|---|---|
-| **D1** | Accuracy | Does the system produce the correct figure? |
+| **D1** | Accuracy | Does the system produce the correct figure from supplied data? |
 | **D2** | Determinism | Same question, same data, same figure — every time? |
-| **D3** | Provenance | Can the system produce its source and operation? |
+| **D3** | Provenance | Can the system produce its source and the operation performed? |
 | **D4** | Refusal integrity | When the data cannot support an answer, does it decline — or invent one? |
 | **D5** | Adversarial resistance | Can it be talked out of its own computation? |
 | **D6** | Conflicting input | Does it flag contradictions — or silently reconcile them? |
-| **D7** | **Computation invocation** | **Was deterministic computation actually invoked — and was invocation guaranteed or discretionary?** |
+| **D7** | Computation invocation | Was deterministic computation actually invoked — and was invocation guaranteed or discretionary? |
 
-**D7 reframes an existing question.** Tool-invocation decisions have been studied as a *capability* question — whether a model correctly judges when a tool is required (see [When2Call](https://arxiv.org/abs/2504.18851), Ross, Mahabaleshwarkar & Suhara, NAACL 2025). AP-1 asks a different question: not *"does the model decide well?"* but *"is the decision the model's to make at all?"*
+**D7 reframes an existing question.** Tool-invocation decisions have been studied as a *capability* question — whether a model correctly judges when a tool is required (see When2Call, Ross, Mahabaleshwarkar & Suhara, NAACL 2025; arXiv:2504.18851). AP-1 asks a different question: not *"does the model decide well?"* but *"is the decision the model's to make at all?"*
 
-A high invocation rate is a **tendency**. A system in which invocation cannot be declined has a **control**. The prior literature measures the former. AP-1 requires the latter.
+A high invocation rate is a tendency. A system in which invocation **cannot be declined** has a control. The prior literature measures the former; AP-1 requires the latter.
 
-In a tool-augmented language model, the computation is deterministic — but *the decision to compute is not*. The model decides whether to invoke computation (probabilistic), writes the computation (probabilistic), the computation executes (deterministic), and the model transcribes the result (probabilistic). **Three of four links are probabilistic.**
+## The central distinction
 
-An accuracy score is therefore uninterpretable without measuring whether computation was actually invoked.
+In a tool-augmented language model, the computation is deterministic — but **the decision to compute is not**. The model decides whether to invoke computation (probabilistic), writes the computation (probabilistic), the computation executes (deterministic), and the model transcribes the result (probabilistic). **Three of four links are probabilistic.**
+
+An accuracy score is therefore uninterpretable in isolation: a system that answers correctly 90% of the time may have computed 90% of the time, or computed 60% of the time and guessed well. These are not the same system, and only one is admissible. The question AP-1 asks is not *"was the figure correct?"* but *"could the figure have been otherwise?"* **Admissibility is the exclusion of fortune.**
 
 ## The principle
 
 > A better model makes fabrication rarer. It cannot make it impossible.
 >
-> **Rarer is a statistic. Impossible is a control.**
+> Rarer is a statistic. Impossible is a control.
 >
 > Regulated institutions cannot deploy statistics. They deploy controls.
 
+## Reporting
+
+The headline claim of an AP-1 report is **not** an accuracy score. It is the **invocation guarantee**: *"deterministic computation was invoked on [X]% of computable questions, under [conditions], and survived [pressure conditions]."*
+
+A system claiming admissibility must be able to substantiate, with AP-1 evidence, the statement: *"This system cannot originate a figure — not by policy, but by construction."* The standard does not assert this of any system; it defines the evidence (D2, D4, D5, D7) by which a claimant may substantiate it, and the disclosures by which any party may dispute it. A system that cannot substantiate it is not inadmissible by definition — but it must disclose that its correctness is **discretionary**, and report the rate.
+
+Scoring rules for every dimension are defined operationally **before any response is seen**, and published. Where feasible, responses are scored blind to which system produced them; dimensions with interpretive latitude are scored by at least two independent scorers, with inter-rater agreement reported.
+
+## Disclosure and held-out sets
+
+A claim of AP-1 evaluation is invalid unless the held-out question set (in full), the frozen system version, the pre-registration, all parameters and prompts verbatim, all raw responses, and **every failure** are published.
+
+A question set is **burned** the moment it is run; publishing it confirms it is burned. Every evaluation therefore uses a **freshly constructed set**. A system may not be modified to pass a specific question and then re-evaluated on the same set — remediation requires a new held-out set, and the history must be disclosed. The repository publishes the **method** for constructing a conformant set, not a reusable set: a published reusable set would be trainable against and is therefore worthless as a held-out instrument.
+
+Where an evaluation claims that a *class* of system fails, it must test **multiple independent members** of that class, from more than one developer — otherwise the finding is a property of one model, not of the class.
+
+## Governance and conflict of interest
+
+AP-1 is authored by ZORRZ, a commercial entity that builds systems designed to satisfy it. **This is a conflict of interest and is disclosed as one.** A standard authored by an interested party is credible only if it is reproducible without the author, falsifiable against the author's own product, and governed in the open. AP-1 is constructed to be all three:
+
+- **Reproducible without the author.** The measuring instrument, scoring rules, disclosure checklist, and held-out-set construction methodology are published in full. Any party may run AP-1 against any system — including ZORRZ's — without ZORRZ's involvement, cooperation, or consent.
+- **No certification authority.** AP-1 does not certify, license, accredit, or endorse any system. It produces a measurement. There is no registry, no seal, and no fee.
+- **Open revision.** Proposed amendments are published openly with a public comment period; the protocol is not revised silently, retroactively, or to accommodate any single system's result.
+
+Independent application of AP-1 by parties with no commercial relationship to ZORRZ is regarded as the primary evidence of the standard's validity — including evaluations reporting results unfavourable to ZORRZ, which will be linked from this repository.
+
+## Regulatory context
+
+*Indicative only — not legal advice. Confirm applicability with qualified counsel.*
+
+On 17 April 2026, the US Federal Reserve, OCC, and FDIC issued revised model-risk guidance (SR 26-2 / OCC Bulletin 2026-13 / FDIC FIL-15-2026), superseding the 2011 SR 11-7. It places **generative and agentic AI models outside the scope of the model-risk framework** ("novel and rapidly evolving") and leaves each institution to define, document, and defend its own governance — while examiners retain safety-and-soundness authority regardless of scope. AP-1 is a candidate measurement for exactly that self-defined obligation: it tests the property (admissibility of quantitative output) a generative or agentic system must demonstrate before an institution can rely on its figures. The standard's Appendix A maps each dimension to durable expectations shared across the US guidance, the UK PRA's SS1/23, and the EU AI Act high-risk provisions.
+
 ## Reference implementation
 
-The scoring script, question-set template, raw-data schema, and disclosure checklist are in preparation and will be published in this repository.
+The scoring script, question-set template, raw-data schema, and disclosure checklist are published in this repository.
 
 The reference implementation is the **measuring instrument** — not a system under test. It permits any party to evaluate any system, including the author's.
 
 ## Applicability to the author
 
-This protocol makes no exception for its author. ZORRZ's own systems are evaluated under AP-1 and the results published in full, **including failures**.
+This protocol makes no exception for its author. ZORRZ's own systems are evaluated under AP-1 and the results published in full, **including failures**. The author's evaluation is subject to every disclosure requirement in the standard, and is not privileged over any third party's.
 
-*A standard its author would not submit to is not a standard.*
+A standard its author would not submit to is not a standard.
+
+## Changelog
+
+- **v1.2 — July 2026.** Hardening for institutional and standards-body scrutiny. Added: architecture-neutrality clause; the falsifiable claim and refutation invitation; governance and conflict-of-interest section; held-out-set construction methodology; scoring-objectivity, blind/independent-scoring, and author-scoring rules; comparator-disclosure and multi-model requirement; the burned-set clarification; and an indicative regulatory mapping updated for the 17 April 2026 revised US model-risk guidance (SR 26-2). Revised: the versioning scheme; the origination clause (from an axiom to a measured question); and the admissibility statement (from a claim of the standard to a claim the system under test must substantiate). **No dimension and no pass criterion was changed; D1–D7 and their thresholds are identical to v1.1.**
+- **v1.1 — July 2026.** D7 revised to cite prior work on tool-invocation evaluation (When2Call, NAACL 2025) and to clarify the distinction between capability measurement and control.
+- **v1.0 — July 2026.** Initial publication.
 
 ## Citation
 
-> Rupp, M. (2026). *The Admissibility Protocol (AP-1): An Open Standard for Evaluating Numerical Admissibility in AI Systems*. ZORRZ Inc. DOI: [pending]
+> Rupp, M. (2026). *The Admissibility Protocol (AP-1): An Open Standard for Evaluating Numerical Admissibility in AI Systems*, Version 1.2. ZORRZ Inc. DOI: [10.5281/zenodo.21324954](https://doi.org/10.5281/zenodo.21324954)
+
+The concept DOI above always resolves to the latest version. A claim of compliance should cite the specific version evaluated against (e.g. "AP-1 v1.2").
 
 ## Licence
 
-CC-BY 4.0 — free to use, cite, implement, and apply to any system.
+CC-BY 4.0 — free to use, cite, implement, and apply to any system, including the author's.
+
+
