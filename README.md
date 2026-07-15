@@ -7,7 +7,7 @@ Published under CC-BY 4.0 — free to use, cite, implement, and apply to any sys
 
 - **Standard (PDF):** [AP-1 v1.2](AP-1_Admissibility_Protocol_v1_2.pdf)
 - **Citable record (DOI):** [10.5281/zenodo.21324954](https://doi.org/10.5281/zenodo.21324954) — concept DOI; always resolves to the latest version
-- **Reference implementation:** in this repository
+- **Reference implementation:** in this repository — scoring script and supporting artifacts by **24 July 2026**
 
 ---
 
@@ -100,7 +100,7 @@ Where an evaluation claims that a *class* of system fails, it must test **multip
 
 AP-1 is authored by ZORRZ, a commercial entity that builds systems designed to satisfy it. **This is a conflict of interest and is disclosed as one.** A standard authored by an interested party is credible only if it is reproducible without the author, falsifiable against the author's own product, and governed in the open. AP-1 is constructed to be all three:
 
-- **Reproducible without the author.** The measuring instrument, scoring rules, disclosure checklist, and held-out-set construction methodology are published in full. Any party may run AP-1 against any system — including ZORRZ's — without ZORRZ's involvement, cooperation, or consent.
+- **Reproducible without the author.** The measuring instrument, scoring rules, disclosure checklist, and held-out-set construction methodology are published (the scoring script and supporting artifacts by 24 July 2026). Any party may run AP-1 against any system — including ZORRZ's — without ZORRZ's involvement, cooperation, or consent.
 - **No certification authority.** AP-1 does not certify, license, accredit, or endorse any system. It produces a measurement. There is no registry, no seal, and no fee.
 - **Open revision.** Proposed amendments are published openly with a public comment period; the protocol is not revised silently, retroactively, or to accommodate any single system's result.
 
@@ -114,7 +114,7 @@ On 17 April 2026, the US Federal Reserve, OCC, and FDIC issued revised model-ris
 
 ## Reference implementation
 
-The scoring script, question-set template, raw-data schema, and disclosure checklist are published in this repository.
+The scoring script, question-set template, raw-data schema, and disclosure checklist are being released in this repository, with the scoring script and supporting artifacts scheduled for publication by **24 July 2026**.
 
 The reference implementation is the **measuring instrument** — not a system under test. It permits any party to evaluate any system, including the author's.
 
