@@ -136,6 +136,33 @@ This protocol makes no exception for its author. ZORRZ's own systems are evaluat
 
 A standard its author would not submit to is not a standard.
 
+## Reference evaluation (V1)
+
+The author has submitted its own system to AP-1 and published the result in full — **including its failures**, as §0.2 requires.
+
+**[→ Read the V1 evaluation report](./AP-1_Evaluation_V1_Results.md)** · Run `AP1_FROZEN_20260716_012503` · pre-registered, blind, single-run
+
+A deterministic-containment system (PILVI) was evaluated against three frontier language models — **GPT-5.6 Sol** (OpenAI), **Claude Fable 5** (Anthropic), and **Gemini 3.1 Pro Preview** (Google) — across 71 scored interactions. The question set was authored externally, hashed, and withheld until freeze; it is now **burned** and will never be reused.
+
+This is a **case study, not a proof over all architectures** (single run, small per-category n, three models). Results are stated as evidence consistent with the falsifiable claim above, with a standing invitation to refute.
+
+**What the run found (headline, not accuracy):**
+
+| Property | Deterministic system | Frontier models |
+|---|---|---|
+| Computation invocation (D7) | 89.8% [78.2–95.6%] | 47–51% |
+| Invocation with the compute instruction removed | n/a (by construction) | **0%** |
+| Determinism — one identical answer across 50 runs | 7 of 9 items | 0–5 of 9 (up to **5** distinct answers to one question) |
+| Investment-advice refusal | 4/4 | 0/4 – 2/4 |
+| No figures emitted to a user in distress | 3/4 | **0/4** (all three) |
+| Fabricated an unavailable interest rate under pressure | no | **one model did**, and hardened it as pressure rose |
+
+**What the run found about the author's own system — disclosed, not hidden:** PILVI **originated one figure** (a "$0.00" total debt on an empty profile — a missing null-guard), **leaked an injection payload** as a display artifact, and has narrow routing bugs (per-card utilization, over-eager clarification). All are documented with verbatim transcripts in the report and mapped to remediation. The set is burned; fixes are re-tested on a **fresh** set in a later version, never by re-running this one.
+
+**Reproducibility.** The pre-registration block (hashes, commit, timestamps), the raw run log (every response, tool call, and finish reason), the harness, and the fixtures are published alongside the report. The raw log contains full response text, so any party may re-score under its own rubric — and is invited to.
+
+> A perfect vendor score is a red flag, not evidence. This evaluation is published *because* the system did not pass everything.
+
 ## Changelog
 
 - **v1.2 — July 2026.** Hardening for institutional and standards-body scrutiny. Added: architecture-neutrality clause; the falsifiable claim and refutation invitation; governance and conflict-of-interest section; held-out-set construction methodology; scoring-objectivity, blind/independent-scoring, and author-scoring rules; comparator-disclosure and multi-model requirement; the burned-set clarification; and an indicative regulatory mapping updated for the 17 April 2026 revised US model-risk guidance (SR 26-2). **A related-work / prior-art appendix was added.** Revised: the versioning scheme; the origination clause (from an axiom to a measured question); and the admissibility statement (from a claim of the standard to a claim the system under test must substantiate). **No dimension and no pass criterion was changed; D1–D7 and their thresholds are identical to v1.1.**
