@@ -136,7 +136,7 @@ This protocol makes no exception for its author. ZORRZ's own systems are evaluat
 
 A standard its author would not submit to is not a standard.
 
-## Reference evaluation (V1)
+## Reference evaluation (V1) -
 
 The author has submitted its own system to AP-1 and published the result in full — **including its failures**, as §0.2 requires.
 
