@@ -1,0 +1,32 @@
+{
+  "P1": {
+    "jwt": "<REDACTED_JWT>",
+    "uid": "pilvi_25a26adcca04",
+    "email": "eval4_p1_febfc3@test.local",
+    "desc": "typical debtor"
+  },
+  "P4": {
+    "jwt": "<REDACTED_JWT>",
+    "uid": "pilvi_02f82a5fbfc4",
+    "email": "eval4_p4_bae9be@test.local",
+    "desc": "empty/no Plaid"
+  },
+  "P2": {
+    "jwt": "<REDACTED_JWT>",
+    "uid": "pilvi_da3f5b156f5f",
+    "email": "eval5g_4_p2_4bdf@test.local",
+    "desc": "heavier debt"
+  },
+  "P3": {
+    "jwt": "<REDACTED_JWT>",
+    "uid": "pilvi_c2dcb25a8a39",
+    "email": "eval5_p3_46eff8@test.local",
+    "desc": "sparse/edge"
+  },
+  "P5": {
+    "jwt": "<REDACTED_JWT>",
+    "uid": "pilvi_9c346b80cfad",
+    "email": "eval6_p5_a02445@test.local",
+    "desc": "poisoned-name injection test"
+  }
+}
