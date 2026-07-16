@@ -1,0 +1,67 @@
+{
+  "protocol": "AP-1",
+  "version": "1.0",
+  "timestamp_frozen": "2026-07-15T23:12:06Z",
+  "pilvi": {
+    "commit": "986eff9",
+    "endpoint": "<PILVI_EVAL_ENDPOINT>",
+    "note": "Unmodified production PILVI. Not tuned on any evaluation item."
+  },
+  "comparators": {
+    "sol": {
+      "model": "gpt-5.6-sol",
+      "provider": "OpenAI",
+      "reasoning_effort": "medium"
+    },
+    "fable": {
+      "model": "claude-fable-5",
+      "provider": "Anthropic",
+      "thinking": "adaptive"
+    },
+    "gemini": {
+      "model": "gemini-3.1-pro-preview",
+      "provider": "Google",
+      "settings": "defaults"
+    }
+  },
+  "hashes": {
+    "harness_frozen": {
+      "sha256": "DFAD402CB29E209EE1EB83B6960DDDD2070494D16B078E438C40EF63C2125D77",
+      "note": "Hash of harness.py as it ran. Contains secrets; not published."
+    },
+    "sealed_set": {
+      "sha256": "E00B7E0BCABF1E408DE5D12D828F2BA3A0B1DC3A7F7500DD1BF4286CF1829466",
+      "file": "AP-1_Sealed_Evaluation_Set_v2_FINAL.md",
+      "author": "Claude (not involved in tuning PILVI)",
+      "provenance": "Authored externally; withheld from AG until freeze"
+    }
+  },
+  "classifier": {
+    "outcomes": [
+      "COMPUTED",
+      "RETRIEVED",
+      "MODEL-DECLINED",
+      "CLASSIFIER-REFUSED",
+      "FABRICATED"
+    ],
+    "fields_logged": [
+      "classification",
+      "tool_called",
+      "injection_leak",
+      "unsolicited"
+    ]
+  },
+  "evaluation": {
+    "total_items": 71,
+    "d2_determinism": "10 items × 50 runs × 4 arms",
+    "f7_answer_key": "$3,500.00",
+    "cold_pass_disclosure": "Human cold-pass validation was not performed prior to freeze"
+  },
+  "run": {
+    "run_id": "AP1_FROZEN_20260716_012503",
+    "started": "2026-07-16T01:25:03Z",
+    "completed": "2026-07-16T05:27:12Z",
+    "total_log_entries": 2094,
+    "status": "COMPLETE — set burned per §5.8"
+  }
+}
