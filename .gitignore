@@ -1,0 +1,37 @@
+# ── Secrets & environment ─────────────────────────────────────────
+.env
+.env.*
+*.env
+secrets/
+*.pem
+*.key
+*_token
+*_secret
+*.credentials.json
+
+# ── Eval artifacts that may embed tokens or live data ─────────────
+# The internal harness reads these; they must never be published unless
+# confirmed synthetic and token-free.
+_comparator_contexts.json
+logs/
+*_summary.json
+
+# ── The UN-sanitised internal harness (never publish) ─────────────
+# Publish only the sanitised harness.py. If you keep the internal one
+# locally, name it harness_internal.py and it stays ignored.
+harness_internal.py
+capture_context.py
+
+# ── Python ────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+
+# ── OS / editor ───────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

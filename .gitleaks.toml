@@ -1,0 +1,46 @@
+# gitleaks configuration for zorrzai/admissibility-protocol
+# Run:  gitleaks detect --source . --config .gitleaks.toml --redact
+# Docs: https://github.com/gitleaks/gitleaks
+
+title = "AP-1 repo secret scan"
+
+# Start from gitleaks' built-in rules (OpenAI, Anthropic, Google, JWT, generic keys, etc.)
+[extend]
+useDefault = true
+
+# ── Repo-specific rules ───────────────────────────────────────────
+[[rules]]
+id = "ap1-eval-bypass-secret"
+description = "Internal evaluation bypass secret / header"
+# matches EVAL_BYPASS_SECRET=..., x-eval-bypass: ..., "x-eval-bypass" value
+regex = '''(?i)(eval[_-]?bypass[_-]?secret|x-eval-bypass)\s*[:=]\s*['"]?[A-Za-z0-9_\-\.]{8,}'''
+tags = ["secret", "custom", "bypass"]
+
+[[rules]]
+id = "ap1-jwt-in-profile"
+description = "JWT / bearer token embedded in a profile or context file"
+# standard JWT shape: header.payload.signature
+regex = '''eyJ[A-Za-z0-9_\-]{10,}\.[A-Za-z0-9_\-]{10,}\.[A-Za-z0-9_\-]{10,}'''
+tags = ["jwt", "custom"]
+
+[[rules]]
+id = "ap1-bearer-token"
+description = "Hardcoded bearer token"
+regex = '''(?i)bearer\s+[A-Za-z0-9_\-\.=]{20,}'''
+tags = ["token", "custom"]
+
+# ── Allowlist: known-safe placeholders and synthetic values ───────
+[allowlist]
+description = "Placeholders, docs, and synthetic sandbox values that are not real secrets"
+regexes = [
+  '''<[A-Z_]+>''',                         # <PILVI_EVAL_ENDPOINT>, <CONFIGURE_...>
+  '''CONFIGURE_SYSTEM_UNDER_TEST''',
+  '''os\.environ\.get''',                  # env-var reads, not literals
+  '''\$\{[A-Z_]+\}''',                     # ${VAR} shell placeholders
+  '''example|sample|dummy|placeholder|sandbox''',
+]
+paths = [
+  '''SECURITY\.md''',                      # documents the patterns by name, intentionally
+  '''\.gitleaks\.toml''',                  # this file references the patterns
+  '''README\.md''',
+]
