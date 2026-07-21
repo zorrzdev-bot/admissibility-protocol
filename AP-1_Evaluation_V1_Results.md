@@ -285,7 +285,8 @@ The results are consistent with AP-1's falsifiable hypothesis (§2.5): the front
 
 Published in this repository:
 - `pre_registration.json` — the immutable block (§2), with all hashes and timestamps.
-- `harness.py` (SHA-256 above) — the four-arm runner, five-outcome classifier, per-provider tool/safety handling.
+- `harness.py` — the four-arm runner, five-outcome classifier, per-provider tool/safety handling. Published SHA-256 `6F48C659A46CE594D52230D6C6061A08EAFCD336754D8551CC1816214D300E64`. This is the **sanitised** harness: it differs from the frozen internal harness (SHA-256 in §2) in exactly two documented respects, neither of which alters any score, prompt, model setting, or classification rule.
+- `SECURITY.md` — the two sanitisation differences, documented in full.
 - `AP1_FROZEN_20260716_012503.jsonl` — every raw response, stop/finish reason, tool call, and classification.
 - `_eval_profiles_v6.json` — the fixtures (synthetic; no real user data).
 - The sealed set (now burned) and its answer key, for audit and re-scoring.
